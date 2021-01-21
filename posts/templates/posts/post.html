@@ -1,0 +1,184 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block body %}
+<article>
+    <!-- post heading -->
+    <section id="post-heading" class="container-post" data-id="{{ post.id }}">
+
+        <div><h1>{{ post.title }}</h1></div>
+        <div class="post-bio">
+            <div class="post-creator">
+                {% if post.user.profile_photo %}
+                <img src="{{ post.user.profile_photo.url }}" alt="{{ post.user }}">
+                {% endif %}
+                <a href="{% url 'posts:profile' post.user %}">{{ post.user }}</a>
+            </div>
+            <div class="post-timestamp"><p>{{ post.date }}</p></div>
+            <div>
+                <button id="bookmark-btn" data-post="{{ post.id }}-{{ request.user.id }}">
+                    {% if request.user.is_authenticated %}
+                        {% if request.user in post.bookmarks.all %}
+                        <svg class="bookmarked" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 -3 24 24">
+                            <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z" /></svg>
+                        {% else %}
+                        <svg class="bookmark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 -3 24 24">
+                            <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z" /></svg>
+                        {% endif %}
+                    {% else %}
+                        <a href="{% url 'posts:login' %}"><svg class="bookmark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 -3 24 24"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z" /></svg></a>
+                    {% endif %}
+                </button>
+            </div>
+        </div>
+        <div class="post-heading-p"><p>{{ post.description }}</p></div>
+        <p>{{ count }}</p>
+    </section>
+
+    <!-- category hero -->
+    <section class="section-category">
+        <div class="container-post header-category">
+            <div id="animate-heading">
+                <h6>{{ post.category }}</h6>
+                <h3 class="candidate-add-vs">
+                    {% for pick in user_picks %}
+                    <span>
+                        {{ pick.candidate }}
+                    </span>
+                    {% endfor %}
+                </h3>
+                <h3>{{ post.main_question }}</h3>
+            </div>
+            {% if post.category.hero_img %}
+            <img id="animate-heading" src="{{ post.category.hero_img.url }}" alt="{{ post.category }} hero image">
+            <!-- <div class="section-category-hero-img">
+                <img src="{{ post.category.hero_img.url }}" alt="{{ post.category }} hero image">
+            </div> -->
+            {% endif %}
+        </div>
+    </section>
+
+   
+    <!-- questions and answers -->
+    <section class="section-qa">
+        {% for question in questions %}
+        <div id="single-question" class="container-post container-question border-question">
+            <h6>{{ forloop.counter }} of {{ questions.count }}</h6>
+            <h2>{{ question.title }}</h2>
+            <div class="mt-1 post-heading-p">{{ question.description }}</div>
+        
+            <div class="card-qa">
+                {% for answer in question.answer_question.all %}
+                <div class="radio-group">
+                    <input type="radio" id="like-btn-{{ answer.id }}" name="like-{{ question.id }}" data-answer="{{ question.id }}-{{ answer.id }}-{{ answer.candidate.id }}-{{ answer.candidate.f_name }} {{answer.candidate.l_name }}" {% if request.user.is_authenticated %}{% if request.user in answer.likes.all %}checked{% endif %}{% endif %}>
+                    <label for="like-btn-{{ answer.id }}">
+                        <h4>{{ answer.title }}</h4>
+                        <p class="mt-1">{{ answer.description }}</p>
+                        <div id="check-box-{{ answer.id }}" class="check-box" data-candidate="{{ answer.candidate.id }}">
+                            {% if request.user.is_authenticated %}
+                            {% if answer in user_answers %}
+                            <svg class="checkmark" viewBox="0 0 38 36.33" xmlns="http://www.w3.org/2000/svg"><path class="checkmark__check" d="m.5 19.5 13 16 24-35" fill="none" stroke="#000" stroke-linecap="round" stroke-miterlimit="10" /></svg>
+                            {% else %}
+                            {% endif %}
+                            {% endif %}
+                        </div>
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+
+    <!-- results -->
+    <section class="section-results">
+        <div class="container-post result-btn">
+            <h4>Results <i id="result-arrow" class="arrow right"></i></h4>
+        </div>
+
+        <div id="show-candidate-result" class="container-post" style="display:none">
+            <!-- 1. chosen candidate -->
+            <div id="user-picks" data-answered="{{ total_questions }}-{% if request.user.is_authenticated %}{{ total_answered }}{% else %}0{% endif %}" style="display: none;">
+                {% if request.user.is_authenticated %}
+                {% for pick in user_picks %}
+                <p>{{ pick.candidate }} <span id="total-{{ pick.candidate.id }}"
+                        data-candidate="{{ pick.candidate }}-{{ pick.candidate.id }}">{{ pick.total_likes }}</span></p>
+                {% endfor %}
+                {% endif %}
+            </div>
+        
+            <!-- 2. matched candidate info -->
+            <div class="card-result">
+                <h1><span id="final-result-candidate" class="thick-underline">{{ user_candidate_pick.candidate }}</span> agrees with <span id="final-result-answer-total">{{ user_candidate_pick.total_likes }}</span> out of {{ total_questions }} of your views on <span class="thick-underline">{{ post.title }}.</span></h1>
+        
+
+                <div class="candidate-profile-wrapper">
+                    <!-- profile photo -->
+                    {% if user_candidate_pick.profile_photo %}
+                    <div id="sectionProfile-profile_photo" class="candidate-profile-photo">
+                        <img src="{{ user_candidate_pick.profile_photo.url }}" alt="{{user_candidate_pick.candidate}} profile photo">
+                    </div>
+                    {% endif %}
+                
+                    <div class="candidate-profile-details">
+                        <h3 id="sectionProfile-full_name" class="candidate-name">{{ user_candidate_pick.candidate }}</h3>
+                
+                        <p><span id="sectionProfile-age">age {{ user_candidate_pick.age }} years</span> | <span
+                                id="sectionProfile-political_party">{{ user_candidate_pick.political_party|title }}</span> | <a
+                                id="sectionProfile-website" src="{{ user_candidate_pick.website }}" target="_blank">website</a>
+                        </p>
+                        <p id="sectionProfile-bio">{{ user_candidate_pick.bio }}</p>
+                    </div>
+                </div>
+                
+                <!-- user answers -->
+                <div class="user-answers-section">
+                    <h5 class="user-answers-heading">Answer Summary</h5>
+                    {% if request.user.is_authenticated %}
+                    <div id="user-answers" class="card-answers-wrapper">
+                        {% for answer in user_answers %}
+                        <div class="card-answer">
+                            <div>
+                                <h6>&#x2713; {{ answer.candidate }}</h6>
+                            </div>
+                            <div>
+                                <h5>{{ answer.question }}: {{ answer.title }}</h4>
+                                <p>{{ answer.description }}</p>
+                                <!-- <div class="card-answer-source">
+                                        <a href="">source</a>
+                                    </div> -->
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <p><a href="{% url 'posts:login' %}">Sign in</a> to see answer summary or save your answers.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+
+<!-- 4. view more posts -->
+<div class="container-post card-related-wrapper">
+    {% if related_posts %}
+    <h5 class="related-heading"><span class="gray">More in </span>{{ post.category }}</h5>
+    {% for post in related_posts %}
+    <div class="card-post">
+        <div class="card-post-img" style="height:150px">
+            <a href="{% url 'posts:post' post.slug %}"><img src="{{ post.image }}" alt="{{ post.title }}"></a>
+        </div>
+        <div class="card-post-detail">
+            <h4><a href="{% url 'posts:post' post.slug %}">{{ post.title }}</a></h4>
+            <p class="sans-serif small">{{ post.description|truncatechars:50 }}</p>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+<script src="{% static 'js/post.js' %}"></script>
+{% endblock %}

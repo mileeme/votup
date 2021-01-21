@@ -1,0 +1,731 @@
+/* nav */
+
+.dropdown-wrapper {
+    display: flex;
+    align-items: center;
+    grid-gap: 0;
+    @include screen(md) { grid-gap: 0.5rem; }
+    img {
+        width: 1.5rem;
+        border-radius: 7px;
+    }
+}
+.dropdown {
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    border-radius: 30%;
+    cursor: pointer;
+    padding: 0.5rem 0.8rem 0.6rem 0.8rem;
+    // margin-left: 0.5rem;
+    i {
+        border-color: $gray;
+    }
+    &:hover, &:active {
+        background-color: transparentize($color: $navy, $amount: 0.94);
+    }
+}
+.dropdown-content {
+    position: absolute;
+    top: 50px;
+    background-color: $white;
+    min-width: 100px;
+    z-index: 1;
+    right: 0;
+    box-shadow: 0 1px 10px -4px $gray;
+    a {
+        display: block;
+        padding: $padding-1;
+        &:hover {
+            background: lighten($gray, 40%);
+        }
+    }
+}
+.nav-profile-link-img {
+    &:hover, &:active {
+        padding: 0.5rem 0.5rem 0.35rem 0.5rem;
+        margin: -0.5rem -0.5rem -0.35rem -0.5rem;
+        border-radius: 30%;
+        background-color: transparentize($color: $navy, $amount: 0.94);
+    }
+}
+.nav-profile-link-text {
+    &:hover, &:active {
+        padding: 0.5rem 0.5rem 0.6rem 0.5rem;
+        margin: -0.5rem -0.5rem -0.6rem -0.5rem;
+        border-radius: 30%;
+        background-color: transparentize($color: $navy, $amount: 0.94);
+    }
+}
+
+/* index pg */
+.main-heading {
+    width: 100%;
+    background-color: $cyan;
+    padding: $padding-1;
+    text-align: center;
+    p {
+        font-family: $font-family-sans-serif;
+        // font-size: $font-size * $small;
+        text-transform: none;
+        color: $dark-gray;
+    }
+}
+.featured-header {
+    background-color: lighten($gray, 40%);
+    margin-top: $margin-1;
+    display: grid;
+    align-items: start;
+    justify-content: center;
+    box-shadow: 0 1px 5px -2px $gray, 
+                0 0 10px -10px $gray;
+    border-radius: 20px;
+    div:nth-of-type(1) { order: 2; }
+    div:nth-of-type(2) { order: 1; }
+    @include screen(md) {
+        grid-template-columns: 1fr 1.5fr;
+        div:nth-of-type(1) { order: 1; }
+        div:nth-of-type(2) { order: 2; }
+    }
+    .featured-content {
+        padding: $padding-1 $padding-1 $padding-2;
+        @include screen(md) {
+            padding: $padding-2;
+        }
+    }
+    .featured-post-image {
+        height: 250px;
+        overflow: hidden;
+        border-top-right-radius: 18px;
+        border-bottom-right-radius: 18px;
+        @include screen(md) {
+            // height: 350px;
+            height: 100%;
+            overflow: hidden;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-top-left-radius: 18px;
+            border-top-right-radius: 18px;
+            @include screen(md) {
+                border-top-left-radius: 0;
+                border-top-right-radius: 18px;
+                border-bottom-right-radius: 18px;
+                &:hover, &:active {
+                    filter: saturate(130%);
+                    transform: scale(1.05);
+                    transition: transform .6s;
+                }
+            }
+        }
+    }
+    h1 {
+        color: $black;
+        @include screen(md) {
+            font-size: $h1 * $small;
+        }
+    }
+    h2 {
+        color: $purple;
+    }
+    a {
+        text-decoration: none;
+    }
+    p {
+        font-size: $font-size-18 * $small;
+        line-height: $line-height-18;
+        font-family: $font-family-sans-serif;
+    }
+}
+
+/* card */
+.delete-card {  
+    animation: deleteCard .3s cubic-bezier(.29,.06,.56,.32) forwards;
+}
+.card-post-wrapper {
+    display: grid;
+    // align-items: start;
+    grid-gap: $padding-1;
+    row-gap: 1rem;
+    overflow: hidden;
+    &:not(:first-child) {
+        margin-top: $margin-2;
+    }
+    &:not(:last-child) {
+        border-bottom: $border-width $border-style lighten($gray, 40%);
+    }
+    @include screen(md) {
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 2.5rem;
+        border-bottom: 0;
+    }
+    p {
+        font-family: $font-family-sans-serif;
+    }
+}
+.card-post {
+    display: grid;
+    grid-template-rows: max-content;
+    align-items: start;
+    grid-gap: 0.8rem;
+    border-radius: 20px;
+    background: $white;
+    border: $border-width $border-style lighten($gray, 35%);
+    padding-bottom: 1.5rem;
+    height: 100%;
+    .card-post-img {
+        height: 200px;
+        overflow: hidden;
+        border-top-left-radius: 18px;
+        border-top-right-radius: 18px;
+        -webkit-mask-image: -webkit-radial-gradient(white, black);
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            // border-radius: 20px;
+            border-top-left-radius: 18px;
+            border-top-right-radius: 18px;
+            &:hover, &:active {
+                object-fit: cover;
+                filter: saturate(130%);
+                transform: scale(1.08);
+                transition: transform .6s;
+            }
+        }
+
+    }
+    .card-post-detail {
+        padding: 0 $padding-1;
+    }
+    .card-post-btns {
+        font-size: $font-size * $small;
+        font-family: $font-family-sans-serif;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0 $padding-1;  
+    }
+    .card-post-answered {
+        margin: 0 $margin-1;
+        color: $navy;
+    } 
+}
+
+/* post pg */
+.animate-heading {
+    animation: showSection .8s cubic-bezier(0, 0.9, 0.3, 1.2) forwards;
+}
+.post-heading-p {
+    font-size: $font-size-20;
+    line-height: $line-height-20;
+    margin-top: $margin-1;
+}
+.post-bio {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: $margin-2;
+    font-family: $font-family-sans-serif;
+    color: $gray;
+    div:not(:last-child):after {
+        padding: 0.5rem;
+        content: '|';
+    }
+}
+.post-timestamp {
+    display: flex;
+    align-items: center;
+}
+.post-creator {
+    display: flex;
+    align-items: center;
+    img {
+        width: 1.5rem;
+        border-radius: 7px;
+        margin-right: 0.5rem;
+    }
+}
+
+// post category section
+.header-category {
+    display: grid;
+    align-items: center;
+    padding: 4rem 0 0;
+    position: relative;
+    margin-top: $margin-2;
+    h3, h6 {
+        font-weight: $font-weight-700;
+        line-height: 1.8rem;
+        padding: 0 1rem;
+        background: $cyan;
+    }
+    @include screen(md) {
+        justify-content: left;
+        padding: $padding-2 0;
+    }
+    .candidate-add-vs {
+        span:not(:last-child):after {
+            content: ' vs';
+        } 
+    }
+    img {
+        position: absolute;
+        width: 80%;
+        filter: opacity(70%);
+        @include screen(sm) {
+            top: -1rem;
+            right: 0;
+            width: 50%;
+            filter: none;
+        }
+    }  
+}
+
+// post q&a section
+.section-qa {
+    p {
+        font-family: $font-family-sans-serif;
+        line-height: $line-height-18;
+    }
+}
+.container-question {
+    padding: 3rem 0;  
+    @include screen(md) {
+        padding: 4rem 0;
+    }
+}
+.border-question:not(:last-child) {
+    border-bottom: $border-width-5 $border-style $border;
+}  
+.card-qa {
+    display: grid;
+    grid-gap: 0.2rem;
+    margin-top: $margin-1;
+    @include screen(md) {
+        margin-top: 3rem;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+.radio-group {
+    input[type="radio"] {
+        display: none;
+    }
+    label {
+        display: grid;
+        grid-template-rows: max-content;
+        cursor: pointer;
+        height: 100%;
+        background-color: lighten($gray, 40%);
+        padding: $padding-1;
+        @include screen(md) { padding: $padding-2; }
+        a {
+            text-decoration: none;
+        }
+        &:hover, &:active {
+            background-color: transparentize($color: $navy, $amount: 0.92);
+        }
+    }
+    .check-box {
+        display: grid;
+        align-self: end;
+        justify-self: end;
+        margin-top: $margin-1;
+        background-color: $white;
+        border-radius: 10px;
+        height: 2rem;
+        width: 2rem;
+        @include screen(sm) {
+            margin-top: auto;
+        }
+    }
+    input[type="radio"]:checked+label {
+        background-color: transparentize($color: $navy, $amount: 0.9);
+    }
+}
+
+// post results section
+.result-btn {
+    .arrow { 
+        .down { margin: 0 0 0.15rem 0.5rem; }
+        .right { margin: 0 0 0 0.1rem; }
+    }
+}
+.section-results {
+    background: lighten($gray, 41%);
+    padding: $padding-2 0;
+    border-top: $border-width $border-style $border;
+    border-bottom: $border-width $border-style $border;
+}
+
+.card-result {
+    padding: 1.5rem 0;
+    h1 {
+        font-size: 1.7rem;
+        font-weight: 600;
+        line-height: 1.4;
+        text-transform: none;
+    }
+    @include screen(md) {
+        h1 {
+            font-size: 1.7rem * 1.1;
+        }
+    }
+}
+.candidate-profile-wrapper {
+    display: grid;
+    grid-gap: $padding-2;
+    margin-top: 3rem;
+    justify-items: start;
+    align-items: center;
+    @include screen(md) {
+        grid-template-columns: 1fr 3fr;
+    }
+}
+.candidate-profile-details {
+    grid-column: 2 / -1;
+    display: grid;
+    grid-gap: $padding-1;
+    p {
+        font-family: $font-family-sans-serif;
+        font-size: $font-size * $small;
+    }
+}
+.candidate-profile-photo {
+    justify-self: start;
+    align-self: start;
+    background-color: transparentize($color: $navy, $amount: 0.80);
+    border-radius: 30px;
+    height: 120px;
+    width: 120px;
+    @include screen(md) {
+        justify-self: center;
+    }
+    img {
+        width: 100%;
+        margin-top: -8px;
+    }
+}
+
+// matching answers section
+.user-answers-section {
+    margin-top: $margin-2;
+    border-top: 0.25rem $border-style lighten($gray, 35%); 
+    .user-answers-heading {
+        padding: $padding-1 0;
+        color: $gray;
+    }
+}
+.card-answers-wrapper {
+    display: grid;
+    align-items: start;
+    row-gap: $margin-1;
+    @include screen(md) {
+        grid-gap: $padding-1;
+        // grid-template-columns: repeat(3, 1fr);
+    }
+}
+.card-answer {
+    display: grid;
+    align-items: start;
+    grid-gap: $padding-1;
+    border-radius: 20px;
+    padding: $padding-1;
+    height: 100%;
+    font-family: $font-family-sans-serif;
+    background-color: transparentize($color: $navy, $amount: 0.95);
+    .card-answer-source {
+        align-self: end;
+    }
+    p {
+        font-size: $font-size * $small;
+    }
+    h4 {
+        font-size: $h4 * $small;
+    }
+    h5 {
+        font-size: $h5 * $small;
+    }
+    h6 {
+        text-transform: capitalize;
+        color: $navy;
+    }
+}
+.thick-underline {
+    padding: 0 2px;
+    box-shadow: inset 0 -20px 0 0 $cyan;
+}
+// related post
+.related-posts {
+    margin-top: $margin-2;
+}
+.card-related-wrapper {
+    display: grid;
+    align-items: start;
+    grid-gap: $padding-1;
+    margin-top: $margin-2;
+    @include screen(md) {
+        .related-heading {
+            grid-column: 1 / -1;
+        }
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+.card-related {
+    display: grid;
+    align-items: start;
+    grid-gap: $padding-1;
+    height: 100%;
+    background-color: lighten($gray, 40%);
+    padding: $padding-1;
+    @include screen(md) {
+        padding: $padding-2 $padding-1;
+        grid-gap: $padding-2;
+    }
+    .card-related-btns {
+        font-size: $font-size * $small;
+        font-family: $font-family-sans-serif;
+        display: flex;
+        justify-content: flex-end;
+    }
+    h5 {
+        color: $gray;
+        font-size: $h5 * $small;
+    }
+    h6 {
+        text-transform: capitalize;
+        color: $purple;
+    }
+}
+
+/* profile pg */
+.profile-all {
+    display: grid;
+    grid-gap: $margin-2;
+    margin-top: $margin-2;
+    @include screen(md) {
+        grid-template-columns: 1fr 3fr;
+    }   
+}
+.profile-user-bio {
+    font-family: $font-family-sans-serif;
+    div {
+        margin-bottom: $margin-1;
+    }
+    .profile-image {
+        img {
+            width: 20%;
+            border-radius: 20px;
+            @include screen(md) {
+                width: 50%;
+            }
+        }
+    }
+    .profile-name {
+        // display: grid;
+        // justify-content: center;
+        // align-items: center;
+        // border-radius: 20px;
+        // width: 180px;
+        // height: 180px;
+        // background: lighten($gray, 40%);
+        // h2 { word-break: break-all; }
+    }
+    .profile-description {
+        color: $gray;
+        line-height: 21px;
+    }
+}
+.profile-section:not(:last-child) {
+    border-bottom: $border-width-5 $border-style $border;
+    padding: 0 0 $padding-2;
+}
+.profile-user-activity {
+    display: grid;
+}
+.card-posts-profile-wrapper {
+    display: grid;
+    align-items: start;
+    row-gap: $margin-2;
+    @include screen(md) {
+        grid-gap: $padding-1;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+.card-posts-profile-heading {
+    grid-column: 1 / -1;
+    h5 {
+        color: $gray;
+    }
+}
+.card-post-no-border {
+    display: grid;
+    align-items: start;
+    grid-gap: $margin-1;
+    border-radius: 20px;
+    .card-post-img-no-border {
+        height: 200px;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 20px;
+        }
+
+    }
+}
+
+/* login logout */
+.form-container {
+    margin-top: $margin-2;
+    background-color: lighten($gray, 40%);
+    padding: $padding-2;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    font-family: $font-family-sans-serif;
+    @include screen(md) {
+        width: 400px;
+    }
+}
+.form-login {
+        display: grid;
+        margin-top: $margin-1;
+        grid-gap: $margin-1;
+        width: 100%;
+    input {
+        border: $border-width $border-style $gray;
+        width: 100%;
+        border-radius: 10px;
+        background: $white;
+        padding: 0.75rem;
+    }
+    button {
+        border-radius: 10px;
+        background: $purple;
+        padding: 0.85rem;
+        color: $white;
+    }
+}
+.form-redirect {
+    color: $gray;
+    padding: $padding-1 0;
+}
+
+/* icons */
+.multi-icons {
+    i:not(:last-child) {
+        margin-right: .2rem;
+    }
+
+}
+.menu {
+    border: $border-style $font-color;
+    border-width: 2px 0 2px 0;
+    display: inline-block;
+    padding: 2px 6px;
+}
+.arrow {
+    border: $border-style $font-color;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    margin-bottom: 2px;
+}
+.right {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.down {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+#bookmark-btn {
+    &:hover, &:active {
+        padding: 0.4rem;
+        margin: -0.4rem;
+        border-radius: 30%;
+        background-color: transparentize($color: $navy, $amount: 0.95);
+    }
+}
+.bookmark {
+    fill: $gray;
+}
+.bookmarked {
+    fill: $gray;
+}
+.read-time {
+    margin: 0 $margin-1;
+}
+.check {
+    height: 18px;
+    width: 18px;
+    fill: $navy;
+    justify-self: center;
+    align-self: center;
+}
+
+.checkmark {
+    width: 25px;
+    height: 25px;
+    display: block;
+    justify-self: center;
+    align-self: center;
+    margin: -10px 0 0 5px;
+    stroke-width: 3;
+    stroke-miterlimit: 10;
+    animation: scale .2s ease-in-out .1s both;
+}
+.checkmark__check {
+    stroke: $navy;
+    stroke-dasharray: 64;
+    stroke-dashoffset: 64;
+    animation: stroke .2s cubic-bezier(0.650, 0.000, 0.450, 1.000) .1s forwards;
+}
+
+/* animation */
+
+// delete bookmark
+@keyframes deleteCard {
+    100% { 
+        opacity: 0;
+        transform: translate(-15rem, 0) scale(0); 
+    }
+}
+
+// post heading slide-up
+@keyframes showSection {
+    0% {
+        opacity: 0;
+        transform: translateY(3rem) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+// checkmark 
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes scale {
+  0%, 100% {
+    transform: none;
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}

@@ -1,0 +1,67 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+
+{% block title %}Votup{% endblock %}
+
+{% block body %}
+<!-- feature posts -->
+{% if featured_post %}
+{% for post in featured_post %}
+<div class="container featured-header">
+    <div class="featured-content">
+        <h6>{{ post.category }}</h6>
+        <h1><a href="{% url 'posts:post' post.slug %}">{{ post.title }}</a></h1>
+        <a href="{% url 'posts:post' post.slug %}"><p class="mt-1">{{ post.feature_summary }}</p></a>
+    </div>
+    {% if post.image %}
+    <div class="featured-post-image">
+        <a href="{% url 'posts:post' post.slug %}"><img src="{{ post.image }}" alt="{{ post.title }} hero image"></a>
+    </div>
+    {% endif %}
+</div>
+{% endfor %}
+{% endif %}
+
+<!-- all posts -->
+<div class="container card-post-wrapper">
+    {% for post in posts %}
+    <div id="post-section-{{ post.id }}" class="card-post">
+        {% if post.image %}
+        <div class="card-post-img">
+            <a href="{% url 'posts:post' post.slug %}"><img src="{{ post.image }}" alt="{{ post.title }}"></a>
+        </div>
+        {% endif %}
+        <div class="card-post-detail">
+            <h6>{{ post.category }}</h6>
+            <h4><a href="{% url 'posts:post' post.slug %}">{{ post.title }}</a></h4>
+        </div>
+        <div class="card-post-detail">
+            <p><a href="{% url 'posts:post' post.slug %}">{{ post.description|truncatechars:60 }}</a></p>
+        </div>
+
+        <!-- bookmark status -->
+        <div class="card-post-btns">
+            {% if request.user.is_authenticated %}
+            <div id="card-post-answered" class="card-post-answered" data-post="{{post.id}}"></div>
+            {% endif %}
+            <button id="bookmark-btn" data-post="{{ post.id }}-{{ request.user.id }}">
+                {% if request.user.is_authenticated %}
+                    {% if request.user in post.bookmarks.all %}
+                    <svg class="bookmarked" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 -3 24 24">
+                        <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z" /></svg>
+                    {% else %}
+                    <svg class="bookmark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 -3 24 24">
+                        <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z" /></svg>
+                {% endif %}
+                {% else %}
+                    <a href="{% url 'posts:login' %}"><svg class="bookmark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 -3 24 24"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z" /></svg></a>
+                {% endif %}
+            </button>
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+

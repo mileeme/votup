@@ -1,0 +1,33 @@
+{% extends 'posts/base.html' %}
+{% block title %}Votup register{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="form-container">
+        {% if message %}
+        <div>{{ message }}</div>
+        {% endif %}
+        <h2>Register</h2>
+        <form action="{% url 'posts:register' %}" method="post" class="form-login">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="username" autofocus>
+            <input type="email" name="email" placeholder="email">
+        
+            <!-- <p>Are you an organization?</p>
+            <input type="text" name="organization" placeholder="organization name">
+            <input type="text" name="description" placeholder="description">
+            <input type="text" name="website" placeholder="website">
+            <input type="file" name="logo"> -->
+        
+            <input type="password" name="password" placeholder="password">
+            <input type="password" name="confirmation" placeholder="confirm password">
+        
+            <button type="submit" value="register">Register</button>
+        </form>
+        
+        <p class="form-redirect">Already have an account? <a href="{% url 'posts:login' %}">Log in</a></p>
+    </div>
+</div>
+
+{% endblock %}
