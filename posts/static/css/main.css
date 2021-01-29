@@ -876,10 +876,21 @@
   padding: 0.4rem;
   margin: -0.4rem;
   border-radius: 30%;
-  background-color: rgba(0, 0, 0, 0.35);
 }
 
 .bookmark {
+  fill: #D3D3D3;
+}
+
+.bookmark:hover, .bookmark:active {
+  fill: #2963a0;
+}
+
+.bookmark-post {
+  fill: #555555;
+}
+
+.bookmark-post:hover, .bookmark-post:active {
   fill: #2963a0;
 }
 

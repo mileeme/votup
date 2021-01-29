@@ -721,11 +721,20 @@
         padding: 0.4rem;
         margin: -0.4rem;
         border-radius: 30%;
-        background-color: transparentize($color: $black, $amount: 0.65);
+        // background-color: transparentize($color: $black, $amount: 0.65);
     }
 }
 .bookmark {
-    fill: $navy;
+    fill: $light-gray;
+    &:hover, &:active {
+        fill: $navy;
+    }
+}
+.bookmark-post {
+    fill: $font-color;
+    &:hover, &:active {
+        fill: $navy;
+    }
 }
 .bookmarked {
     fill: $navy;

@@ -39,10 +39,20 @@ document.addEventListener('DOMContentLoaded', function () {
 /* update bookmark */
 function bookmark(post_id, user_id) {
     const csrftoken = Cookies.get('csrftoken');
+    const p = window.location.pathname;
 
-    // google bookmark svg elements
+    // bookmark css for darkmode and lightmode
+    let bookmark_mode; 
+    if (p === '/' || p === 0)  {
+        bookmark_mode = 'bookmark';
+    } else {
+        bookmark_mode = 'bookmark-post';
+    }
+
+    // bookmark svg elements
     let svg_bookmarked = `<svg class="bookmarked" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 -2 24 24"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z" /></svg>`;
-    let svg_bookmark = `<svg class="bookmark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 -2 24 24"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z" /></svg>`;
+    
+    let svg_bookmark = `<svg class="${bookmark_mode}" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 -2 24 24"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z" /></svg>`;
 
     // update bookmark via PUT
     fetch(`/bookmark/${post_id}/${user_id}`, {

@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('input[id^="like-btn-"]').forEach(input => {
         input.addEventListener('change', () => {
             let checked_inputs = [];
-            let checkmark = '<svg class="checkmark" viewBox="0 0 38 36.33" xmlns="http://www.w3.org/2000/svg"><path class="checkmark__check" d="m.5 19.5 13 16 24-35" fill="none" stroke="#000" stroke-linecap="round" stroke-miterlimit="10"/></svg>';
+            // let checkmark = '<svg class="checkmark" viewBox="0 0 38 36.33" xmlns="http://www.w3.org/2000/svg"><path class="checkmark__check" d="m.5 19.5 13 16 24-35" fill="none" stroke="#000" stroke-linecap="round" stroke-miterlimit="10"/></svg>';
+            let checkmark = '<svg class="checkmark" viewBox="0 0 45 42.5" xmlns="http://www.w3.org/2000/svg"><path class="checkmark__check" d="m4 23 12.36 15.22a.76.76 0 0 0 1.21 0l23.43-34.22" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" stroke-miterlimit="10" /> </svg>';
             console.log(checked_inputs)
             document.querySelectorAll('input[id^="like-btn-"]').forEach(input => {
                 let answer = {
