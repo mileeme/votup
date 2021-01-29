@@ -17,9 +17,9 @@
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 </head>
 
-<body class="{% active_link 'posts:index' 'bg-black' strict=True %}">
+<body class="{% if request.path_info != '/' %}bg-near-white{% else %}bg-black{% endif %}">
     <!-- nav -->
-    <nav class="{% if request.path_info != '/' %}bg-gray{% else %}bg-dark-gray{% endif %}">
+    <nav class="{% if request.path_info != '/' %}bg-dark-gray{% else %}bg-dark-gray{% endif %}">
         <div class="nav container">
             <div class="nav-links">
                 <a class="logo" href="{% url 'posts:index' %}">

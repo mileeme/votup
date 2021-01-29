@@ -8,7 +8,9 @@
     <!-- post heading -->
     <section id="post-heading" class="container-post" data-id="{{ post.id }}">
 
-        <div><h1>{{ post.title }}</h1></div>
+        <div>
+            <h1>{{ post.title }}</h1>
+        </div>
         <div class="post-bio">
             <div class="post-creator">
                 {% if post.user.profile_photo %}
@@ -16,7 +18,8 @@
                 {% endif %}
                 <a href="{% url 'posts:profile' post.user %}">{{ post.user }}</a>
             </div>
-            <div class="post-timestamp"><p>{{ post.date }}</p></div>
+            <!-- <div class="post-timestamp"><p>{{ post.date }}</p></div> -->
+            <div><p class="post-category">{{ post.category }}</p></div>
             <div>
                 <button id="bookmark-btn" data-post="{{ post.id }}-{{ request.user.id }}">
                     {% if request.user.is_authenticated %}
@@ -41,7 +44,6 @@
     <section class="section-category">
         <div class="container-post header-category">
             <div id="animate-heading">
-                <h6>{{ post.category }}</h6>
                 <h3 class="candidate-add-vs">
                     {% for pick in user_picks %}
                     <span>
@@ -111,7 +113,7 @@
         
             <!-- 2. matched candidate info -->
             <div class="card-result">
-                <h1><span id="final-result-candidate" class="thick-underline">{{ user_candidate_pick.candidate }}</span> agrees with <span id="final-result-answer-total">{{ user_candidate_pick.total_likes }}</span> out of {{ total_questions }} of your views on <span class="thick-underline">{{ post.title }}.</span></h1>
+                <h1><span id="final-result-candidate" class="color-purple">{{ user_candidate_pick.candidate }}</span> agrees with <span class="highlight"><span id="final-result-answer-total">{{ user_candidate_pick.total_likes }}</span> out of {{ total_questions }}</span> of your views on <span class="color-purple">{{ post.title }}.</span></h1>
         
 
                 <div class="candidate-profile-wrapper">

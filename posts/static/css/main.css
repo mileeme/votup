@@ -108,7 +108,7 @@
 .main-heading p {
   font-family: "Roboto", "Open Sans", "Helvetica", sans-serif;
   text-transform: none;
-  color: #221542;
+  color: #5904c9;
 }
 
 .container-featured-header {
@@ -345,12 +345,22 @@
   align-items: center;
   margin-top: 2rem;
   font-family: "Roboto", "Open Sans", "Helvetica", sans-serif;
-  color: #909090;
+}
+
+.post-bio div:not(:last-child) {
+  margin-right: 0.5rem;
 }
 
 .post-bio div:not(:last-child):after {
-  padding: 0.5rem;
-  content: '|';
+  padding: 0.35rem;
+}
+
+.post-category {
+  display: inline-block;
+  font-size: 13.6px;
+  padding: .3rem .65rem;
+  border-radius: 10px;
+  background-color: rgba(211, 211, 211, 0.55);
 }
 
 .post-timestamp {
@@ -377,11 +387,11 @@
   margin-top: 2rem;
 }
 
-.header-category h3, .header-category h6 {
-  font-weight: 700;
+.header-category h3 {
+  font-weight: 900;
+  color: #131720;
   line-height: 1.8rem;
   padding: 0 1rem;
-  background: #93f8fd;
 }
 
 @media (min-width: 48rem) {
@@ -426,7 +436,7 @@
 }
 
 .border-question:not(:last-child) {
-  border-bottom: 5px solid #EBEBEB;
+  border-bottom: 5px solid #D3D3D3;
 }
 
 .card-qa {
@@ -453,6 +463,7 @@
   height: 100%;
   background-color: #f6f6f6;
   padding: 1rem;
+  border-radius: 20px;
 }
 
 @media (min-width: 48rem) {
@@ -466,7 +477,12 @@
 }
 
 .radio-group label:hover, .radio-group label:active {
-  background-color: rgba(41, 99, 160, 0.08);
+  background-color: #131720;
+  color: #ECECEC;
+}
+
+.radio-group label:hover h4, .radio-group label:active h4 {
+  color: #fff;
 }
 
 .radio-group .check-box {
@@ -474,7 +490,7 @@
   align-self: end;
   justify-self: end;
   margin-top: 1rem;
-  background-color: #fff;
+  background-color: #ECECEC;
   border-radius: 10px;
   height: 2rem;
   width: 2rem;
@@ -487,7 +503,12 @@
 }
 
 .radio-group input[type="radio"]:checked + label {
-  background-color: rgba(41, 99, 160, 0.1);
+  background-color: #131720;
+  color: #ECECEC;
+}
+
+.radio-group input[type="radio"]:checked + label h4 {
+  color: #fff;
 }
 
 .result-btn .arrow .down {
@@ -623,7 +644,14 @@
 
 .thick-underline {
   padding: 0 2px;
-  box-shadow: inset 0 -20px 0 0 #93f8fd;
+  box-shadow: inset 0 -4px 0 0 #5A45FF;
+}
+
+.highlight {
+  padding: 0.2rem 1rem;
+  background: rgba(90, 69, 255, 0.2);
+  border-radius: 50px;
+  color: #5A45FF;
 }
 
 .related-posts {
@@ -884,7 +912,7 @@
 }
 
 .checkmark__check {
-  stroke: #2963a0;
+  stroke: #5A45FF;
   stroke-dasharray: 64;
   stroke-dashoffset: 64;
   animation: stroke 0.2s cubic-bezier(0.65, 0, 0.45, 1) 0.1s forwards;
@@ -1320,6 +1348,10 @@ body {
   body {
     letter-spacing: 0.3;
   }
+}
+
+.color-purple {
+  color: #5A45FF;
 }
 
 .bg-black {
