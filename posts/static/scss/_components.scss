@@ -22,22 +22,29 @@
         border-color: $gray;
     }
     &:hover, &:active {
-        background-color: transparentize($color: $navy, $amount: 0.94);
+        background-color: transparentize($color: $black, $amount: 0.65);
     }
 }
 .dropdown-content {
     position: absolute;
     top: 50px;
-    background-color: $white;
+    background-color: $dark-gray;
     min-width: 100px;
     z-index: 1;
     right: 0;
-    box-shadow: 0 1px 10px -4px $gray;
+    border-radius: 12px;
+    box-shadow: 0 4px 5px -2px $gray;
     a {
         display: block;
-        padding: $padding-1;
-        &:hover {
-            background: lighten($gray, 40%);
+        padding: 0.75rem;
+        &:hover { background: $black; }
+        &:first-child:hover {
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+        &:last-child:hover {
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
         }
     }
 }
@@ -46,7 +53,7 @@
         padding: 0.5rem 0.5rem 0.35rem 0.5rem;
         margin: -0.5rem -0.5rem -0.35rem -0.5rem;
         border-radius: 30%;
-        background-color: transparentize($color: $navy, $amount: 0.94);
+        background-color: transparentize($color: $black, $amount: 0.65);
     }
 }
 .nav-profile-link-text {
@@ -54,31 +61,50 @@
         padding: 0.5rem 0.5rem 0.6rem 0.5rem;
         margin: -0.5rem -0.5rem -0.6rem -0.5rem;
         border-radius: 30%;
-        background-color: transparentize($color: $navy, $amount: 0.94);
+        background-color: transparentize($color: $black, $amount: 0.65);
     }
 }
 
 /* index pg */
 .main-heading {
     width: 100%;
-    background-color: $cyan;
-    padding: $padding-1;
-    text-align: center;
+    background-color: transparentize($color: $purple, $amount: 0.2);
+    padding: 0.5rem;
+    // text-align: center;
+    // border-bottom: 1px solid transparentize($color: $font-color, $amount: .5);
+    margin-bottom: $margin-1;
+    @include screen(md) { margin-bottom: $margin-2; }
     p {
         font-family: $font-family-sans-serif;
         // font-size: $font-size * $small;
         text-transform: none;
-        color: $dark-gray;
+        color: $dark-purple;
+    }
+}
+.container-featured-header {
+    margin-left: $container-mobile-margin;
+    margin-right: $container-mobile-margin;
+    margin-bottom: $margin-1;
+    padding-bottom: $padding-2;
+    // border-bottom: 1px solid $gray;
+    @include screen(md) {
+        margin-left: $container-margin;
+        margin-right: $container-margin;
+        width: $container-width;
+        @include container(md);
+    }
+    @include screen(lg) {
+        @include container(lg);
     }
 }
 .featured-header {
-    background-color: lighten($gray, 40%);
+    background-color: $dark-navy;
     margin-top: $margin-1;
     display: grid;
     align-items: start;
     justify-content: center;
-    box-shadow: 0 1px 5px -2px $gray, 
-                0 0 10px -10px $gray;
+    // box-shadow: 0 1px 5px -2px $gray, 
+    //             0 0 10px -10px $gray;
     border-radius: 20px;
     div:nth-of-type(1) { order: 2; }
     div:nth-of-type(2) { order: 1; }
@@ -93,12 +119,18 @@
             padding: $padding-2;
         }
     }
+    // .featured-content-heading {
+    //     border-bottom: 1px solid $gray;
+    //     padding-bottom: $padding-1;
+    //     margin-bottom: $margin-1;
+    // }
     .featured-post-image {
         height: 250px;
         overflow: hidden;
-        border-top-right-radius: 18px;
-        border-bottom-right-radius: 18px;
         @include screen(md) {
+            border-top-left-radius: 0;
+            border-top-right-radius: 18px;
+            border-bottom-right-radius: 18px;
             // height: 350px;
             height: 100%;
             overflow: hidden;
@@ -114,30 +146,33 @@
                 border-top-left-radius: 0;
                 border-top-right-radius: 18px;
                 border-bottom-right-radius: 18px;
-                &:hover, &:active {
-                    filter: saturate(130%);
-                    transform: scale(1.05);
-                    transition: transform .6s;
-                }
+            }
+            &:hover, &:active {
+                filter: saturate(130%);
+                transform: scale(1.05);
+                transition: transform .6s;
             }
         }
     }
     h1 {
-        color: $black;
+        color: $white;
+        margin-top: $margin-1;
         @include screen(md) {
             font-size: $h1 * $small;
+            margin-top: $margin-2;
         }
     }
-    h2 {
-        color: $purple;
-    }
-    a {
-        text-decoration: none;
+    h6 { 
+        color: $font-color; 
+        font-size: $h6-sm;
+        border-bottom: 1px solid $font-color;
+        padding-bottom: 0.5rem;
     }
     p {
-        font-size: $font-size-18 * $small;
+        font-size: $font-size-18;
         line-height: $line-height-18;
         font-family: $font-family-sans-serif;
+        color: $light-gray;
     }
 }
 
@@ -150,7 +185,7 @@
     // align-items: start;
     grid-gap: $padding-1;
     row-gap: 1rem;
-    overflow: hidden;
+    overflow: visible;
     &:not(:first-child) {
         margin-top: $margin-2;
     }
@@ -162,8 +197,14 @@
         row-gap: 2.5rem;
         border-bottom: 0;
     }
+    h4 { 
+        font-weight: $font-weight-700;
+        color: $white; 
+    }
     p {
         font-family: $font-family-sans-serif;
+        color: $light-gray;
+        line-height: 1.325;
     }
 }
 .card-post {
@@ -172,9 +213,11 @@
     align-items: start;
     grid-gap: 0.8rem;
     border-radius: 20px;
-    background: $white;
-    border: $border-width $border-style lighten($gray, 35%);
-    padding-bottom: 1.5rem;
+    background-color: $dark-navy;
+    // box-shadow: 0 1px 5px -2px $gray, 
+    //             0 0 10px -10px $gray;
+    // border: $border-width $border-style lighten($gray, 35%);
+    padding-bottom: 1rem;
     height: 100%;
     .card-post-img {
         height: 200px;
@@ -626,7 +669,7 @@
 
 }
 .menu {
-    border: $border-style $font-color;
+    border: $border-style $white;
     border-width: 2px 0 2px 0;
     display: inline-block;
     padding: 2px 6px;
@@ -655,14 +698,14 @@
         padding: 0.4rem;
         margin: -0.4rem;
         border-radius: 30%;
-        background-color: transparentize($color: $navy, $amount: 0.95);
+        background-color: transparentize($color: $black, $amount: 0.65);
     }
 }
 .bookmark {
-    fill: $gray;
+    fill: $navy;
 }
 .bookmarked {
-    fill: $gray;
+    fill: $navy;
 }
 .read-time {
     margin: 0 $margin-1;

@@ -7,17 +7,21 @@
 <!-- feature posts -->
 {% if featured_post %}
 {% for post in featured_post %}
-<div class="container featured-header">
-    <div class="featured-content">
-        <h6>{{ post.category }}</h6>
-        <h1><a href="{% url 'posts:post' post.slug %}">{{ post.title }}</a></h1>
-        <a href="{% url 'posts:post' post.slug %}"><p class="mt-1">{{ post.feature_summary }}</p></a>
+<div class="container-featured-header ">
+    <div class="featured-header">
+        <div class="featured-content">
+            <div class="featured-content-heading">
+                <h6>{{ post.category }}</h6>
+                <h1><a href="{% url 'posts:post' post.slug %}">{{ post.title|title }}</a></h1>
+            </div>
+            <p class="mt-1"><a href="{% url 'posts:post' post.slug %}">{{ post.feature_summary }}</a></p>
+        </div>
+        {% if post.image %}
+        <div class="featured-post-image">
+            <a href="{% url 'posts:post' post.slug %}"><img src="{{ post.image }}" alt="{{ post.title }} hero image"></a>
+        </div>
+        {% endif %}
     </div>
-    {% if post.image %}
-    <div class="featured-post-image">
-        <a href="{% url 'posts:post' post.slug %}"><img src="{{ post.image }}" alt="{{ post.title }} hero image"></a>
-    </div>
-    {% endif %}
 </div>
 {% endfor %}
 {% endif %}
@@ -32,8 +36,8 @@
         </div>
         {% endif %}
         <div class="card-post-detail">
-            <h6>{{ post.category }}</h6>
-            <h4><a href="{% url 'posts:post' post.slug %}">{{ post.title }}</a></h4>
+            <!-- <h6>{{ post.category }}</h6> -->
+            <h4><a href="{% url 'posts:post' post.slug %}">{{ post.title|title }}</a></h4>
         </div>
         <div class="card-post-detail">
             <p><a href="{% url 'posts:post' post.slug %}">{{ post.description|truncatechars:60 }}</a></p>

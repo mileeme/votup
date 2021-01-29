@@ -1,4 +1,4 @@
-# CS50W Capstone
+# Votup
 
 ## Summary
 Votup is a hybrid publication and quiz platform that lets users compare candidates up for election.
@@ -29,43 +29,6 @@ Votup allows publishers to create quizzes and users to view a side-by-side compa
     <img src="posts/static/image/posts/votup_post_mobile.png" alt="votup post responsive">
     <img src="posts/static/image/posts/votup_post_result_mobile.png" alt="votup post result responsive">
 </div>
-
----
-## Final project requirements
-- [x] distinct from past projects
-- [x] utilize Django for back-end
-- [x] utilize JavaScript for front-end
-- [x] mobile-responsive
-- [x] readme.md describe project
-  - [x] what's contained in each file
----
-## Project file structure
-
-__votup project/__: main project folder
-- __media/posts__: user uploaded files
-- __posts__: posts app folder
-  - __migrations__: track all migrations
-  - __static__
-    - __css__: main css file
-    - __images/posts__: svg images
-    - __js__: javascript files (index.js, post.js)
-    - __scss__: scss files (_components.scss, _mixins.scss, _reset.scss, _variables.scss, main.scss)
-  - __templates/posts__: html files (base.html, index.html, login.html, register.html, post.html, profile.html)
-  - __tests__: test files
-    - __init__.py
-    - __test_models.py__: tests for models
-    - __test_views.py__: test for
-  - __init__.py
-  - __admin.py__: admin classes
-  - __apps.py__
-  - __models.py__: seven models for posts app
-  - __urls.py__: pages(index, post, profile, login, register) and fetch api
-  - __views.py__: logic for all pages and fetch api
-- __.env__: environment variables
-- __manage.py__
-- __Pipfile__: manage project dependencies
-- __Pipfile.lock__: list of dependencies
-- __readme.md__: project spec documentation
 
 ---
 ## Database schema 

@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-
     // get logged in user id
     const user_id = JSON.parse(document.getElementById("user-id").textContent);
 
