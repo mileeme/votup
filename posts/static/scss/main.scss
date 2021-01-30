@@ -5,7 +5,7 @@
 @import 'reset';
 
 body {
-    font: $font-family-serif $font-size $font-style $font-weight-400 $line-height;
+    font: $font-family-sans-serif $font-size $font-style $font-weight-400 $line-height;
     color: $font-color;
     letter-spacing: $letter-spacing-mobile;
     @include screen(md) {
@@ -70,15 +70,21 @@ h6 {
     font-size: $h6-sm;
     text-transform: uppercase;
     font-weight: $font-weight-400;
-    
+    letter-spacing: 0.5px;
     @include screen(md) {
         font-size: $h6;
     }
 }
+p { font-family: $font-family-sans-serif; }
 
 // article
 article {
+    font-family: $font-family-sans-serif;
     margin-top: $margin-2;
+    h1, h2, h3, h4, h5 { color: $white; }
+    h6 { color: $font-color; }
+    p { color: $light-gray; }
+    
 }
 .mt-1 {
     margin-top: $margin-1;
@@ -93,9 +99,9 @@ article {
 }
 
 // font
-.sans-serif {
-    font-family: $font-family-sans-serif;
-}
+// .sans-serif {
+//     font-family: $font-family-sans-serif;
+// }
 .small {
     font-size: $font-size * $small;
 }
@@ -118,6 +124,20 @@ article {
     margin-left: $container-mobile-margin;
     margin-right: $container-mobile-margin;
     @include screen(md) {
+        margin-left: $container-margin;
+        margin-right: $container-margin;
+        width: $container-width;
+        @include container(md);
+    }
+}
+.container-result {
+    border-radius: 20px;
+    background: $dark-gray;
+    padding: $padding-1;
+    margin-left: $container-mobile-margin;
+    margin-right: $container-mobile-margin;
+    @include screen(md) {
+        padding: $padding-1 $padding-2;
         margin-left: $container-margin;
         margin-right: $container-margin;
         width: $container-width;
@@ -185,7 +205,7 @@ main {
 
 /* footer */
 footer {
-    background: $dark-gray;
+    // background: $dark-gray;
     font-family: $font-family-sans-serif;
     border-top: 1px solid $dark-gray;
     position: absolute;

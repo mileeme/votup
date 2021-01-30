@@ -9,7 +9,7 @@
     <section id="post-heading" class="container-post" data-id="{{ post.id }}">
 
         <div>
-            <h1>{{ post.title }}</h1>
+            <h1>{{ post.title|title }}</h1>
         </div>
         <div class="post-bio">
             <div class="post-creator">
@@ -36,7 +36,7 @@
                 </button>
             </div>
         </div>
-        <div class="post-heading-p"><p>{{ post.description }}</p></div>
+        <p class="post-heading-p">{{ post.description }}</p>
         <p>{{ count }}</p>
     </section>
 
@@ -68,23 +68,20 @@
         {% for question in questions %}
         <div id="single-question" class="container-post container-question border-question">
             <h6>{{ forloop.counter }} of {{ questions.count }}</h6>
-            <h2>{{ question.title }}</h2>
-            <div class="mt-1 post-heading-p">{{ question.description }}</div>
+            <h2>{{ question.title|title }}</h2>
+            <div class="mt-1 post-heading-p"><p>{{ question.description }}</p></div>
         
             <div class="card-qa">
                 {% for answer in question.answer_question.all %}
                 <div class="radio-group">
                     <input type="radio" id="like-btn-{{ answer.id }}" name="like-{{ question.id }}" data-answer="{{ question.id }}-{{ answer.id }}-{{ answer.candidate.id }}-{{ answer.candidate.f_name }} {{answer.candidate.l_name }}" {% if request.user.is_authenticated %}{% if request.user in answer.likes.all %}checked{% endif %}{% endif %}>
                     <label for="like-btn-{{ answer.id }}">
-                        <h4>{{ answer.title }}</h4>
+                        <h4>{{ answer.title|title }}</h4>
                         <p class="mt-1">{{ answer.description }}</p>
                         <div id="check-box-{{ answer.id }}" class="check-box" data-candidate="{{ answer.candidate.id }}">
                             {% if request.user.is_authenticated %}
                             {% if answer in user_answers %}
-                            <!-- <svg class="checkmark" viewBox="0 0 38 36.33" xmlns="http://www.w3.org/2000/svg"><path class="checkmark__check" d="m.5 19.5 13 16 24-35" fill="none" stroke="#000" stroke-linecap="round" stroke-miterlimit="10" /></svg> -->
-                            <!-- <svg class="checkmark" viewBox="0 0 41 38.5" xmlns="http://www.w3.org/2000/svg"><path class="checkmark__check" d="m2 21 12.36 15.22a.76.76 0 0 0 1.21 0l23.43-34.22" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" stroke-miterlimit="10"/></svg> -->
-                            <!-- <svg class="checkmark" viewBox="0 0 43 40.5" xmlns="http://www.w3.org/2000/svg"><path class="checkmark__check" d="m3 22 12.36 15.22a.76.76 0 0 0 1.21 0l23.43-34.22" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="6" stroke-miterlimit="10"/></svg> -->
-                            <svg class="checkmark" viewBox="0 0 45 42.5" xmlns="http://www.w3.org/2000/svg"><path class="checkmark__check" d="m4 23 12.36 15.22a.76.76 0 0 0 1.21 0l23.43-34.22" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" stroke-miterlimit="10" /> </svg>
+                            <svg class="checkmark" viewBox="0 0 45 42.5" xmlns="http://www.w3.org/2000/svg"><path class="checkmark__check" d="m4 23 12.36 15.22a.76.76 0 0 0 1.21 0l23.43-34.22" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" stroke-miterlimit="10" /></svg>
                             {% else %}
                             {% endif %}
                             {% endif %}
@@ -97,13 +94,23 @@
         {% endfor %}
     </section>
 
+
+
+
+
+
+
+
+
+
+
     <!-- results -->
-    <section class="section-results">
-        <div class="container-post result-btn">
-            <h4>Results <i id="result-arrow" class="arrow right"></i></h4>
+    <section class="container-result section-results">
+        <div class="result-btn">
+            <h6>Results <i id="result-arrow" class="arrow right"></i></h6>
         </div>
 
-        <div id="show-candidate-result" class="container-post" style="display:none">
+        <div id="show-candidate-result" style="display:none">
             <!-- 1. chosen candidate -->
             <div id="user-picks" data-answered="{{ total_questions }}-{% if request.user.is_authenticated %}{{ total_answered }}{% else %}0{% endif %}" style="display: none;">
                 {% if request.user.is_authenticated %}
@@ -116,7 +123,7 @@
         
             <!-- 2. matched candidate info -->
             <div class="card-result">
-                <h1><span id="final-result-candidate" class="color-purple">{{ user_candidate_pick.candidate }}</span> agrees with <span class="highlight"><span id="final-result-answer-total">{{ user_candidate_pick.total_likes }}</span> out of {{ total_questions }}</span> of your views on <span class="color-purple">{{ post.title }}.</span></h1>
+                <h1><span id="final-result-candidate" class="color-purple">{{ user_candidate_pick.candidate }}</span> agrees with <span id="final-result-answer-total">{{ user_candidate_pick.total_likes }}</span> out of {{ total_questions }} of your views on <span class="color-purple">{{ post.title }}.</span></h1>
         
 
                 <div class="candidate-profile-wrapper">
@@ -130,17 +137,17 @@
                     <div class="candidate-profile-details">
                         <h3 id="sectionProfile-full_name" class="candidate-name">{{ user_candidate_pick.candidate }}</h3>
                 
-                        <p><span id="sectionProfile-age">age {{ user_candidate_pick.age }} years</span> | <span
-                                id="sectionProfile-political_party">{{ user_candidate_pick.political_party|title }}</span> | <a
-                                id="sectionProfile-website" src="{{ user_candidate_pick.website }}" target="_blank">website</a>
+                        <p><span id="sectionProfile-age">{{ user_candidate_pick.age }} years</span> · <span
+                                id="sectionProfile-political_party">{{ user_candidate_pick.political_party|title }}</span> · <a
+                                id="sectionProfile-website" src="{{ user_candidate_pick.website }}" target="_blank">Website</a>
                         </p>
-                        <p id="sectionProfile-bio">{{ user_candidate_pick.bio }}</p>
+                        <p id="sectionProfile-bio" class="post-heading-p">{{ user_candidate_pick.bio }}</p>
                     </div>
                 </div>
                 
                 <!-- user answers -->
                 <div class="user-answers-section">
-                    <h5 class="user-answers-heading">Answer Summary</h5>
+                    <h6 class="user-answers-heading">Answer Summary</h6>
                     {% if request.user.is_authenticated %}
                     <div id="user-answers" class="card-answers-wrapper">
                         {% for answer in user_answers %}
@@ -149,11 +156,11 @@
                                 <h6>&#x2713; {{ answer.candidate }}</h6>
                             </div>
                             <div>
-                                <h5>{{ answer.question }}: {{ answer.title }}</h4>
-                                <p>{{ answer.description }}</p>
-                                <!-- <div class="card-answer-source">
-                                        <a href="">source</a>
-                                    </div> -->
+                                <h4>{{ answer.question|title }}: {{ answer.title|title }}</h4>
+                                <p class="mt-1">{{ answer.description }}</p>
+                            </div>
+                            <div class="card-answer-source">
+                                <a href="">source</a>
                             </div>
                         </div>
                         {% endfor %}
@@ -170,7 +177,7 @@
 <!-- 4. view more posts -->
 <div class="container-post card-related-wrapper">
     {% if related_posts %}
-    <h5 class="related-heading"><span class="gray">More in </span>{{ post.category }}</h5>
+    <h6 class="related-heading">More In {{ post.category|title }}</h6>
     {% for post in related_posts %}
     <div class="card-post">
         <div class="card-post-img" style="height:150px">
@@ -178,7 +185,7 @@
         </div>
         <div class="card-post-detail">
             <h4><a href="{% url 'posts:post' post.slug %}">{{ post.title }}</a></h4>
-            <p class="sans-serif small">{{ post.description|truncatechars:50 }}</p>
+            <p class="small">{{ post.description|truncatechars:50 }}</p>
         </div>
     </div>
     {% endfor %}

@@ -16,7 +16,7 @@ $breakpoints: (
 ) !default;
 
 // fonts
-$font-family-serif: 'Georgia', 'Times New Roman', serif !default;
+// $font-family-serif: 'Georgia', 'Times New Roman', serif !default;
 $font-family-sans-serif: "Roboto", "Open Sans", "Helvetica", sans-serif !default;
 $font-size: 16px !default;
 $line-height: 1.6 !default;
@@ -29,7 +29,7 @@ $font-weight-900: 900 !default;
 
 // post font sizes
 $font-size-18: 1.125rem;
-$line-height-18: 1.6rem;
+$line-height-18: 1.7rem;
 $font-size-20: 1.3rem;
 $line-height-20: 2rem;
 
@@ -39,12 +39,11 @@ $black: #000 !default;
 $near-black: #0E0E0E !default;
 $dark-gray: #151515 !default;
 $main-heading-gray: #1b1b1b !default;
-$dark-gray: #1D1D1D !default;
 $gray: #909090 !default;
-$light-gray: #D3D3D3 !default;
+$light-gray: #CBCBCB !default;
 $near-white: #ECECEC !default;
 $white: #fff !default;
-$dark-purple: #5904c9 !default;
+$dark-purple: #2d0068 !default;
 $purple: #5A45FF !default;
 $light-purple: #7e6eff !default;
 $cyan: #93f8fd !default;

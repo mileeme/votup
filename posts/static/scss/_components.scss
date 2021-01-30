@@ -75,7 +75,7 @@
     margin-bottom: $margin-1;
     @include screen(md) { margin-bottom: $margin-2; }
     p {
-        font-family: $font-family-sans-serif;
+        // font-family: $font-family-sans-serif;
         // font-size: $font-size * $small;
         text-transform: none;
         color: $dark-purple;
@@ -164,14 +164,13 @@
     }
     h6 { 
         color: $font-color; 
-        font-size: $h6-sm;
         border-bottom: 1px solid $font-color;
         padding-bottom: 0.5rem;
     }
     p {
         font-size: $font-size-18;
         line-height: $line-height-18;
-        font-family: $font-family-sans-serif;
+        // font-family: $font-family-sans-serif;
         color: $light-gray;
     }
 }
@@ -202,7 +201,7 @@
         color: $white; 
     }
     p {
-        font-family: $font-family-sans-serif;
+        // font-family: $font-family-sans-serif;
         color: $light-gray;
         line-height: 1.325;
     }
@@ -247,7 +246,7 @@
     }
     .card-post-btns {
         font-size: $font-size * $small;
-        font-family: $font-family-sans-serif;
+        // font-family: $font-family-sans-serif;
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -264,8 +263,9 @@
     animation: showSection .8s cubic-bezier(0, 0.9, 0.3, 1.2) forwards;
 }
 .post-heading-p {
-    font-size: $font-size-20;
-    line-height: $line-height-20;
+    font-size: $font-size-18;
+    line-height: $line-height-18;
+    letter-spacing: -0.1px;
     margin-top: $margin-1;
 }
 .post-bio {
@@ -273,7 +273,7 @@
     justify-content: flex-start;
     align-items: center;
     margin-top: $margin-2;
-    font-family: $font-family-sans-serif;
+    // font-family: $font-family-sans-serif;
     div:not(:last-child) {
         margin-right: 0.5rem;
     }
@@ -287,7 +287,8 @@
     font-size: $font-size * $small;
     padding: .3rem .65rem;
     border-radius: 10px;
-    background-color: transparentize($color: $light-gray, $amount: 0.45);
+    background-color: transparentize($color: $purple, $amount: 0.9);
+    color: $purple;
 }
 .post-timestamp {
     display: flex;
@@ -342,8 +343,8 @@
 // post q&a section
 .section-qa {
     p {
-        font-family: $font-family-sans-serif;
-        line-height: $line-height-18;
+        // font-family: $font-family-sans-serif;
+        // line-height: $line-height-18;
     }
 }
 .container-question {
@@ -353,11 +354,11 @@
     }
 }
 .border-question:not(:last-child) {
-    border-bottom: $border-width-5 $border-style $light-gray;
+    border-bottom: $border-width-5 $border-style $dark-gray;
 }  
 .card-qa {
     display: grid;
-    grid-gap: 0.2rem;
+    grid-gap: 0.4rem;
     margin-top: $margin-1;
     @include screen(md) {
         margin-top: 3rem;
@@ -373,18 +374,24 @@
         grid-template-rows: max-content;
         cursor: pointer;
         height: 100%;
-        background-color: lighten($gray, 40%);
-        padding: $padding-1;
+        background-color: $dark-gray;
+        // color: $near-white;
+        // background-color: lighten($gray, 40%);
+        padding: $padding-2 $padding-1;
         border-radius: 20px;
         @include screen(md) { padding: $padding-2; }
         a {
             text-decoration: none;
         }
         &:hover, &:active {
+            .check-box { background-color: $dark-purple; border: 1px solid $purple;}
             // background-color: transparentize($color: $navy, $amount: 0.92);
-            h4 { color: $white; }
-            background-color: $dark-navy;
-            color: $near-white;
+            h4 { 
+                color: $purple; 
+                filter: saturate(4);
+            }
+            background-color: $dark-purple;
+            // color: $near-white;
         }
     }
     .check-box {
@@ -392,7 +399,7 @@
         align-self: end;
         justify-self: end;
         margin-top: $margin-1;
-        background-color: $near-white;
+        background-color: $main-heading-gray;
         border-radius: 10px;
         height: 2rem;
         width: 2rem;
@@ -401,10 +408,24 @@
         }
     }
     input[type="radio"]:checked+label {
-        // background-color: transparentize($color: $navy, $amount: 0.9);
-        h4 { color: $white; }
-        background-color: $dark-navy;
-        color: $near-white;
+        h4 { 
+            color: $purple; 
+            filter: saturate(4)
+        }
+        background-color: $dark-purple;
+        .check-box { background-color: $dark-purple; border: 1px solid $purple;}
+    }
+    h4 { 
+        // color: transparentize($color: $purple, $amount: 0.35); 
+        color: $gray; 
+        font-weight: $font-weight-900;
+        letter-spacing: 0.75px;
+        // filter: saturate(4);
+    }
+    p { 
+        line-height: 25px; 
+        letter-spacing: 0.04px;
+        color: $gray;
     }
 }
 
@@ -416,15 +437,16 @@
     }
 }
 .section-results {
-    background: lighten($gray, 41%);
+    // background: lighten($gray, 41%);
     padding: $padding-2 0;
-    border-top: $border-width $border-style $border;
-    border-bottom: $border-width $border-style $border;
+    // border-top: $border-width $border-style $border;
+    // border-bottom: $border-width $border-style $border;
 }
 
 .card-result {
     padding: 1.5rem 0;
     h1 {
+        color: $gray;
         font-size: 1.7rem;
         font-weight: 600;
         line-height: 1.4;
@@ -450,16 +472,13 @@
     grid-column: 2 / -1;
     display: grid;
     grid-gap: $padding-1;
-    p {
-        font-family: $font-family-sans-serif;
-        font-size: $font-size * $small;
-    }
 }
 .candidate-profile-photo {
     justify-self: start;
     align-self: start;
-    background-color: transparentize($color: $navy, $amount: 0.80);
-    border-radius: 30px;
+    background-color: $purple;
+    filter: brightness(1);
+    border-radius: 100px;
     height: 120px;
     width: 120px;
     @include screen(md) {
@@ -474,7 +493,7 @@
 // matching answers section
 .user-answers-section {
     margin-top: $margin-2;
-    border-top: 0.25rem $border-style lighten($gray, 35%); 
+    border-top: 0.25rem $border-style $near-black; 
     .user-answers-heading {
         padding: $padding-1 0;
         color: $gray;
@@ -492,27 +511,33 @@
 .card-answer {
     display: grid;
     align-items: start;
-    grid-gap: $padding-1;
-    border-radius: 20px;
-    padding: $padding-1;
+    grid-gap: 0.25rem;
+    // border-radius: 20px;
+    padding: $padding-1 0;
     height: 100%;
-    font-family: $font-family-sans-serif;
-    background-color: transparentize($color: $navy, $amount: 0.95);
+    // font-family: $font-family-sans-serif;
+    // background-color: transparentize($color: $navy, $amount: 0.95);
+    // @include screen(md) {
+    //     padding: $padding-2;
+    // }
+    &:not(:last-child) {
+        border-bottom: 1px solid $black;
+    }
     .card-answer-source {
         align-self: end;
+        // border-top: 1px solid $dark-gray;
     }
     p {
-        font-size: $font-size * $small;
+        line-height: 25px;
+        letter-spacing: 0.04px;
+        color: $gray;
     }
     h4 {
         font-size: $h4 * $small;
     }
-    h5 {
-        font-size: $h5 * $small;
-    }
     h6 {
         text-transform: capitalize;
-        color: $navy;
+        color: $purple;
     }
 }
 .thick-underline {
@@ -537,6 +562,7 @@
     @include screen(md) {
         .related-heading {
             grid-column: 1 / -1;
+            color: $font-color;
         }
         grid-template-columns: repeat(3, 1fr);
     }
@@ -554,7 +580,7 @@
     }
     .card-related-btns {
         font-size: $font-size * $small;
-        font-family: $font-family-sans-serif;
+        // font-family: $font-family-sans-serif;
         display: flex;
         justify-content: flex-end;
     }
@@ -578,7 +604,7 @@
     }   
 }
 .profile-user-bio {
-    font-family: $font-family-sans-serif;
+    // font-family: $font-family-sans-serif;
     div {
         margin-bottom: $margin-1;
     }
@@ -655,7 +681,7 @@
     margin-left: auto;
     margin-right: auto;
     align-items: center;
-    font-family: $font-family-sans-serif;
+    // font-family: $font-family-sans-serif;
     @include screen(md) {
         width: 400px;
     }
