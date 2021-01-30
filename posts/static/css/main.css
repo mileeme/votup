@@ -164,6 +164,10 @@
   padding: 1rem 1rem 2rem;
 }
 
+.featured-header .featured-content p {
+  color: #CBCBCB;
+}
+
 @media (min-width: 48rem) {
   .featured-header .featured-content {
     padding: 2rem;
@@ -228,7 +232,7 @@
 
 .featured-header p {
   font-size: 1.125rem;
-  line-height: 1.7rem;
+  line-height: 1.9rem;
   color: #CBCBCB;
 }
 
@@ -266,7 +270,7 @@
 }
 
 .card-post-wrapper p {
-  color: #CBCBCB;
+  color: #909090;
   line-height: 1.325;
 }
 
@@ -311,6 +315,7 @@
 
 .card-post .card-post-btns {
   font-size: 13.6px;
+  font-family: "Roboto", "Open Sans", "Helvetica", sans-serif;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -319,7 +324,7 @@
 
 .card-post .card-post-answered {
   margin: 0 1rem;
-  color: #2963a0;
+  color: #5A45FF;
 }
 
 /* post pg */
@@ -329,7 +334,7 @@
 
 .post-heading-p {
   font-size: 1.125rem;
-  line-height: 1.7rem;
+  line-height: 1.9rem;
   letter-spacing: -0.1px;
   margin-top: 1rem;
 }
@@ -354,7 +359,7 @@
   font-size: 13.6px;
   padding: .3rem .65rem;
   border-radius: 10px;
-  background-color: rgba(90, 69, 255, 0.1);
+  background-color: rgba(90, 69, 255, 0.15);
   color: #5A45FF;
 }
 
@@ -475,9 +480,8 @@
   border: 1px solid #5A45FF;
 }
 
-.radio-group label:hover h4, .radio-group label:active h4 {
-  color: #5A45FF;
-  filter: saturate(4);
+.radio-group label:hover h4, .radio-group label:hover p, .radio-group label:active h4, .radio-group label:active p {
+  color: #7465f4;
 }
 
 .radio-group .check-box {
@@ -501,9 +505,8 @@
   background-color: #2d0068;
 }
 
-.radio-group input[type="radio"]:checked + label h4 {
-  color: #5A45FF;
-  filter: saturate(4);
+.radio-group input[type="radio"]:checked + label h4, .radio-group input[type="radio"]:checked + label p {
+  color: #7465f4;
 }
 
 .radio-group input[type="radio"]:checked + label .check-box {
@@ -540,7 +543,7 @@
 }
 
 .card-result h1 {
-  color: #909090;
+  color: #fff;
   font-size: 1.7rem;
   font-weight: 600;
   line-height: 1.4;
@@ -576,7 +579,7 @@
 .candidate-profile-photo {
   justify-self: start;
   align-self: start;
-  background-color: #5A45FF;
+  background-color: #7465f4;
   filter: brightness(1);
   border-radius: 100px;
   height: 120px;
@@ -647,18 +650,6 @@
   color: #5A45FF;
 }
 
-.thick-underline {
-  padding: 0 2px;
-  box-shadow: inset 0 -4px 0 0 #5A45FF;
-}
-
-.highlight {
-  padding: 0.2rem 1rem;
-  background: rgba(90, 69, 255, 0.2);
-  border-radius: 50px;
-  color: #5A45FF;
-}
-
 .related-posts {
   margin-top: 2rem;
 }
@@ -713,7 +704,7 @@
 
 .card-related h6 {
   text-transform: capitalize;
-  color: #5A45FF;
+  color: #7465f4;
 }
 
 /* profile pg */
@@ -744,13 +735,24 @@
   }
 }
 
+.profile-user-bio .profile-name h2 {
+  color: #fff;
+}
+
+.profile-user-bio .profile-name h4 {
+  color: #909090;
+}
+
 .profile-user-bio .profile-description {
   color: #909090;
-  line-height: 21px;
+  line-height: 25px;
+  letter-spacing: 0.04px;
+  padding: 1rem 0;
+  border-top: 1px solid #909090;
 }
 
 .profile-section:not(:last-child) {
-  border-bottom: 5px solid #EBEBEB;
+  border-bottom: 5px solid #151515;
   padding: 0 0 2rem;
 }
 
@@ -762,6 +764,10 @@
   display: grid;
   align-items: start;
   row-gap: 2rem;
+}
+
+.card-posts-profile-wrapper h5 {
+  color: #fff;
 }
 
 @media (min-width: 48rem) {
@@ -887,7 +893,7 @@
 }
 
 .bookmark:hover, .bookmark:active {
-  fill: #2963a0;
+  fill: #4978ff;
 }
 
 .bookmark-post {
@@ -895,11 +901,11 @@
 }
 
 .bookmark-post:hover, .bookmark-post:active {
-  fill: #2963a0;
+  fill: #4978ff;
 }
 
 .bookmarked {
-  fill: #2963a0;
+  fill: #4978ff;
 }
 
 .read-time {
@@ -909,7 +915,7 @@
 .check {
   height: 18px;
   width: 18px;
-  fill: #2963a0;
+  fill: #4978ff;
   justify-self: center;
   align-self: center;
 }
@@ -1036,6 +1042,7 @@ pre {
 * resets
 */
 a {
+  font-family: "Roboto", "Open Sans", "Helvetica", sans-serif;
   background-color: transparent;
   /* 1 */
   text-decoration: none;
@@ -1365,6 +1372,10 @@ body {
   }
 }
 
+.color-light-purple {
+  color: #7465f4;
+}
+
 .color-purple {
   color: #5A45FF;
 }
@@ -1552,16 +1563,12 @@ article p {
   }
 }
 
-nav {
-  background: #fff;
-}
-
 nav a {
-  color: #555555;
+  color: #ECECEC;
 }
 
 nav a:hover, nav a:active {
-  color: #2963a0;
+  color: #4978ff;
 }
 
 .nav {
@@ -1588,17 +1595,18 @@ nav a:hover, nav a:active {
 
 .nav .link {
   font-size: 13.6px;
-  color: #2963a0;
+  color: #ECECEC;
   border-radius: 12px;
   padding: .5rem 1rem;
 }
 
 .nav .link:hover, .nav .link:active {
-  background-color: rgba(41, 99, 160, 0.06);
+  color: #4978ff;
+  background-color: rgba(0, 0, 0, 0.35);
 }
 
 .nav .nav-link-bg {
-  background-color: rgba(41, 99, 160, 0.06);
+  background-color: rgba(0, 0, 0, 0.35);
 }
 
 .logo svg {
@@ -1612,7 +1620,7 @@ main {
 }
 
 main a:hover, main a:active {
-  color: #2963a0;
+  color: #4978ff;
 }
 
 /* footer */

@@ -14,8 +14,10 @@
         {% endif %}
         <div class="profile-name">
             <h2>{{ profile_user|title }}</h2>
-            {% if profile_user.organization %}<p>{{ profile_user.organization }}</p>{% endif %}
-            {% if profile_user.website %}<a href="{{ profile_user.website }}" target="_blank">Website</a>{% endif %}
+            {% if profile_user.organization %}<h4>{{ profile_user.organization }}</h4>{% endif %}
+            {% if profile_user.website %}
+            <div><a href="{{ profile_user.website }}" target="_blank">Website</a></div>
+            {% endif %}
         </div>
         <div class="profile-description">
             {% if profile_user.description %}<p>{{ profile_user.description }}</p>{% endif %}
@@ -26,7 +28,7 @@
         <!-- user posts -->
         {% if posts %}
         <div class="profile-section card-posts-profile-wrapper">
-            <div class="card-posts-profile-heading"><h5>Posts</h5></div>
+            <div class="card-posts-profile-heading"><h6>Posts</h6></div>
             {% for post in posts %}
             <div class="card-post-no-border">
                 {% if post.image %}
@@ -35,7 +37,7 @@
                 </div>
                 {% endif %}
                 <div class="card-post-detail">
-                    <h4><a href="{% url 'posts:post' post.slug %}">{{ post.title }}</a></h4>
+                    <h5><a href="{% url 'posts:post' post.slug %}">{{ post.title|title }}</a></h5>
                 </div>
             </div>
             {% endfor %}
@@ -44,7 +46,7 @@
         
         <!-- user bookmarks -->
         <div class="profile-section card-post-wrapper">
-            <div class="card-posts-profile-heading"><h5>Bookmarks</h5></div>
+            <div class="card-posts-profile-heading"><h6>Bookmarks</h6></div>
             {% if bookmarks %}
             {% for bookmark in bookmarks %}
             <div id="profile-bookmark-{{ bookmark.id }}" class="card-post">
@@ -73,7 +75,7 @@
         <!-- user answered posts -->
         <div class="profile-section card-post-wrapper">
             <div class="card-posts-profile-heading">
-                <h5>Answered Posts</h5>
+                <h6>Answered Posts</h6>
             </div>
 
             {% if answers %}
