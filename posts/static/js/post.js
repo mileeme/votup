@@ -192,36 +192,44 @@ function update_answers(post_id, user_id) {
 
             // set answers content to none
             results.forEach(result => {
-                let answer_container, heading_id, heading_candidate, heading_question, heading_title, answer_description;
+                let answer_container, heading_id, heading_candidate, heading_question_title, answer_description, answer_source, answer_source_link;
 
                 // create answer container
                 answer_container = document.createElement('div');
                 answer_container.className = 'card-answer';
                 answer_heading = document.createElement('div');
+                answer_source = document.createElement('div');
+                answer_source.className = 'card-answer-source';
 
                 // create element for key values
                 heading_id = document.createElement('label');
                 heading_candidate = document.createElement('h6');
-                heading_question = document.createElement('h5');
-                heading_title = document.createElement('h4');
+                // heading_question = document.createElement('h5');
+                // heading_title = document.createElement('h4');
+                heading_question_title = document.createElement('h4');
                 answer_description = document.createElement('p');
+                answer_description.className = 'mt-1';
+                answer_source_link = document.createElement('a');
 
                 // loop through obj and insert value into element
                 Object.keys(result).forEach(function(key) {
                     heading_id.innerHTML = `${result['id']}`;
                     heading_candidate.innerHTML = `&#x2713; ${result['candidate']}`;
-                    heading_question.innerHTML = `${result['question']}`;
-                    heading_title.innerHTML = `${result['title']}`;
+                    heading_question_title.innerHTML = `${result['question']}: ${result['title']}`;
+                    // heading_title.innerHTML = `${result['title']}`;
                     answer_description.innerHTML = `${result['description']}`;
+                    answer_source_link.innerHTML =`Source`;
                 })
 
                 // append element to answer container
                 answer_heading.append(heading_candidate);
-                answer_heading.append(heading_question);
-                answer_heading.append(heading_title);
+                answer_heading.append(heading_question_title);
+                // answer_heading.append(heading_title);
+                answer_source.append(answer_source_link);
 
                 answer_container.append(answer_heading);
                 answer_container.append(answer_description);
+                answer_container.append(answer_source_link);
 
                 user_answers.append(answer_container)
             })

@@ -184,9 +184,9 @@
             <a href="{% url 'posts:post' post.slug %}"><img src="{{ post.image }}" alt="{{ post.title }}"></a>
         </div>
         <div class="card-post-detail">
-            <h4><a href="{% url 'posts:post' post.slug %}">{{ post.title }}</a></h4>
-            <p class="small">{{ post.description|truncatechars:50 }}</p>
+            <h5><a href="{% url 'posts:post' post.slug %}">{{ post.title }}</a></h5>
         </div>
+        <!-- <div class="card-post-detail"><p>{{ post.description|truncatechars:50 }}</p></div> -->
     </div>
     {% endfor %}
     {% endif %}

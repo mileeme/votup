@@ -55,7 +55,6 @@
   z-index: 1;
   right: 0;
   border-radius: 12px;
-  box-shadow: 0 4px 5px -2px #909090;
 }
 
 .dropdown-content a {
@@ -356,7 +355,7 @@
   padding: .3rem .65rem;
   border-radius: 10px;
   background-color: rgba(90, 69, 255, 0.1);
-  color: #555555;
+  color: #5A45FF;
 }
 
 .post-timestamp {
@@ -385,7 +384,7 @@
 
 .header-category h3 {
   font-weight: 900;
-  color: #131720;
+  color: #5A45FF;
   line-height: 1.8rem;
   padding: 0 1rem;
 }
@@ -631,7 +630,6 @@
 
 .card-answer .card-answer-source {
   align-self: end;
-  border-top: 1px solid #151515;
 }
 
 .card-answer p {
@@ -670,6 +668,10 @@
   align-items: start;
   grid-gap: 1rem;
   margin-top: 2rem;
+}
+
+.card-related-wrapper h5 {
+  color: #fff;
 }
 
 @media (min-width: 48rem) {
@@ -1394,7 +1396,6 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.1px;
   margin-top: 0.15rem;
   margin-bottom: 0;
-  color: #000;
 }
 
 h1 {
