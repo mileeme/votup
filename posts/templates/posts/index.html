@@ -18,7 +18,15 @@
         </div>
         {% if post.image %}
         <div class="featured-post-image">
-            <a href="{% url 'posts:post' post.slug %}"><img src="{{ post.image }}" alt="{{ post.title }} hero image"></a>
+            <!-- <a href="{% url 'posts:post' post.slug %}"><img src="{{ post.image }}" alt="{{ post.title }} hero image"></a> -->
+            <a href="{% url 'posts:post' post.slug %}">
+                <picture>
+                    {% if post.image2x %}
+                    <source srcset="{{ post.image2x.url }}" media="(min-width: 768px)">
+                    {% endif %}
+                    <img src="{{ post.image.url }}" alt="{{ post.title }} image" />
+                </picture>
+            </a>
         </div>
         {% endif %}
     </div>
@@ -32,12 +40,20 @@
     <div id="post-section-{{ post.id }}" class="card-post">
         {% if post.image %}
         <div class="card-post-img">
-            <a href="{% url 'posts:post' post.slug %}"><img src="{{ post.image }}" alt="{{ post.title }}"></a>
+            <!-- <a href="{% url 'posts:post' post.slug %}"><img src="{{ post.image }}" alt="{{ post.title }}"></a> -->
+            <a href="{% url 'posts:post' post.slug %}">
+                <picture>
+                    {% if post.image2x %}
+                    <source srcset="{{ post.image2x.url }}" media="(min-width: 768px)">
+                    {% endif %}
+                    <img src="{{ post.image.url }}" alt="{{ post.title }} image" />
+                </picture>
+            </a>
         </div>
         {% endif %}
         <div class="card-post-detail">
             <!-- <h6>{{ post.category }}</h6> -->
-            <h4><a href="{% url 'posts:post' post.slug %}">{{ post.title|title }}</a></h4>
+            <h5><a href="{% url 'posts:post' post.slug %}">{{ post.title|title }}</a></h5>
         </div>
         <div class="card-post-detail">
             <p><a href="{% url 'posts:post' post.slug %}">{{ post.description|truncatechars:60 }}</a></p>

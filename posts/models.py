@@ -21,7 +21,7 @@ class FeaturedMessage(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=60, blank=True, null=True)
     hero_img = models.FileField(
-        upload_to='posts', blank=True, null=True)
+        max_length=255, upload_to='posts', blank=True, null=True)
     
     def __str__(self):
         return self.name
@@ -35,7 +35,8 @@ class Post(models.Model):
     main_question = models.CharField(max_length=250, blank=True, null=True, default='')
     title = models.CharField(max_length=250, blank=True, null=True, default='')
     image_link = models.URLField(blank=True, null=True)
-    image = models.URLField(blank=True, null=True)
+    image = models.ImageField(blank=True, null=True, upload_to='posts')
+    image2x = models.ImageField(blank=True, null=True, upload_to='posts')
     description = models.TextField(max_length=1500, blank=True, null=True)
     feature_summary = models.TextField(max_length=350, blank=True, null=True, default='')
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -142,4 +143,4 @@ class Answer(models.Model):
         }
 
     # class Meta:
-    #     ordering = ['title']
+    #     ordering = ['slug']

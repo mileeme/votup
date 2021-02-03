@@ -18,8 +18,9 @@ $breakpoints: (
 // fonts
 // $font-family-serif: 'Georgia', 'Times New Roman', serif !default;
 $font-family-sans-serif: "Roboto", "Open Sans", "Helvetica", sans-serif !default;
-$font-size: 16px !default;
-$line-height: 1.6 !default;
+$font-size: 17px !default;
+$line-height: 1.56 !default;
+$letter-spacing: 0.04px !default;
 $font-style: normal !default;
 $font-weight-300: 300 !default;
 $font-weight-400: 400 !default;
@@ -29,12 +30,12 @@ $font-weight-900: 900 !default;
 
 // post font sizes
 $font-size-18: 1.125rem;
-$line-height-18: 1.9rem;
+$line-height-18: 1.8rem;
 $font-size-20: 1.3rem;
 $line-height-20: 2rem;
 
 // colors
-$font-color: #555555 !default;
+$font-color: #3c3c3c !default;
 $black: #000 !default;
 $near-black: #0E0E0E !default;
 $dark-gray: #151515 !default;
@@ -43,12 +44,27 @@ $gray: #909090 !default;
 $light-gray: #CBCBCB !default;
 $near-white: #ECECEC !default;
 $white: #fff !default;
-$dark-purple: #2d0068 !default;
+$dark-purple: #362178 !default;
 $purple: #5A45FF !default;
-$light-purple: #7465f4 !default;
+$light-purple: #eceafd !default;
 $cyan: #93f8fd !default;
 $dark-navy: #131720 !default;
 $navy: #4978ff !default;
+
+$card-bg-color: $white;
+$card-heading-color: $near-black;
+$card-font-color: $font-color;
+$card-h6-color: $gray;
+
+$answer-bg-color: transparentize($color: $purple, $amount: 0.9);
+$answer-font-color: $purple;
+$answer-checked-bg-color: $purple;
+$answer-checked-font-color: $white;
+$answer-checkbox-bg-color: $near-white;
+$answer-checked-checkbox-border-color: $light-purple;
+
+$result-bg-color: transparentize($color: $light-gray, $amount: 0.8);
+
 
 // container
 $container-margin: auto !default;
@@ -68,7 +84,7 @@ $letter-spacing-mobile: -0.2px;
 
 // Headings
 $heading-line-height: 1.2 !default;
-$heading-letter-spacing: -0.1px !default;
+$heading-letter-spacing: 0.3px !default;
 $heading-margin-top: 0.15rem !default;
 
 // heading font-size
@@ -101,9 +117,9 @@ $margin-2: 2rem !default;
 /* -----------------
 * Borders
 ----------------- */ 
-$border: #EBEBEB !default;
+$border: $light-gray !default;
 $border-width: 1px !default;
-$border-width-5: 5px !default;
+$border-width-3: 3px !default;
 $border-style: solid !default;
 $borders: $border-width $border-style $border !default;
 

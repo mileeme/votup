@@ -26,7 +26,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: $font-family-sans-serif;
     line-height: $heading-line-height;
     font-weight: $font-weight-500;
-    letter-spacing: $heading-letter-spacing;
+    // letter-spacing: $heading-letter-spacing;
     margin-top: $heading-margin-top;
     margin-bottom: 0;
     // text-transform: capitalize;
@@ -42,6 +42,7 @@ h1 {
 }
 h2 {
     font-size: $h2-sm;
+    font-weight: $font-weight-700;
     @include screen(md) {
         font-size: $h2;
     }
@@ -71,18 +72,26 @@ h6 {
     text-transform: uppercase;
     font-weight: $font-weight-400;
     letter-spacing: 0.5px;
+    color: $card-h6-color;
     @include screen(md) {
         font-size: $h6;
     }
 }
-p { font-family: $font-family-sans-serif; }
+p { 
+    font-family: $font-family-sans-serif; 
+    font-size: $font-size;
+    font-weight: $font-weight-400;
+    line-height: $line-height;
+    letter-spacing: $letter-spacing;
+}
 // article
 article {
     font-family: $font-family-sans-serif;
     margin-top: $margin-2;
-    h1, h2, h3, h4, h5 { color: $white; }
-    h6 { color: $font-color; }
-    p { color: $light-gray; }
+    h1, h2, h3, h4, h5 { color: $near-black; }
+    // h6 { color: $card-h6-color; }
+    p { color: $font-color; }
+    a { color: $navy; }
     
 }
 .mt-1 {
@@ -129,9 +138,21 @@ article {
         @include container(md);
     }
 }
+.container-image {
+    margin-left: 0;
+    margin-right: 0;
+    min-height: 200px;
+    max-height: 500px;
+    overflow: hidden;
+    img {
+        object-fit: cover;
+        object-position: center;
+        width: 100%;
+    }
+}
 .container-result {
     border-radius: 20px;
-    background: $dark-gray;
+    background: $result-bg-color;
     padding: $padding-1;
     margin-left: $container-mobile-margin;
     margin-right: $container-mobile-margin;
@@ -149,7 +170,7 @@ nav {
     // border-bottom: $border-width $border-style lighten($gray, 35%);
     // background: $white;
     a {
-        color: $near-white;
+        color: $font-color;
         &:hover, &:active {
             color: $navy;
         }
@@ -173,22 +194,22 @@ nav {
     }
     .link {
         font-size: $font-size * $small;
-        color: $near-white;
+        color: $font-color;
         border-radius: 12px;
         padding: .5rem 1rem;
         &:hover, &:active {
             color: $navy;
-            background-color: transparentize($color: $black, $amount: 0.65);
+            background-color: transparentize($color: $black, $amount: 0.95);
         }
     }
     .nav-link-bg {
-        background-color: transparentize($color: $black, $amount: 0.65);
+        background-color: transparentize($color: $black, $amount: 0.95);
     }
 }
 .logo {
     // margin-right: 2rem;
     svg {
-        fill: $white;
+        fill: $black;
         width: 4rem;
     }
 }
@@ -207,11 +228,12 @@ main {
 footer {
     // background: $dark-gray;
     font-family: $font-family-sans-serif;
-    border-top: 1px solid $dark-gray;
+    border-top: 1px solid $light-gray;
     position: absolute;
     bottom: 0;
-    color: lighten($gray, 40%);
+    color: $gray;
     width: 100%;
+    a:hover, a:active { color: $navy; }
     .footer-content {
         padding: $padding-2 0;
         display: flex;
@@ -221,7 +243,7 @@ footer {
     .logo-footer {
         margin-right: 2rem;
         svg {
-            fill: $white;
+            fill: $gray;
             width: 3rem;
         }
     }

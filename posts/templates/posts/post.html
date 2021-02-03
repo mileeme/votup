@@ -4,6 +4,18 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block body %}
+<!-- post image -->
+{% if post.image %}
+<div class="container-image">
+    <picture>
+        {% if post.image2x %}
+        <source srcset="{{ post.image2x.url }}" media="(min-width: 768px)">
+        {% endif %}
+        <img src="{{ post.image.url }}" alt="{{ post.title }} image" />
+    </picture>
+    <!-- <img src="{{ post.image }}" alt="{{ post.title }}"> -->
+</div>
+{% endif %}
 <article>
     <!-- post heading -->
     <section id="post-heading" class="container-post" data-id="{{ post.id }}">
@@ -41,17 +53,17 @@
     </section>
 
     <!-- category hero -->
-    <section class="section-category">
-        <div class="container-post header-category">
+    <section class="section-category container-post">
+        <div class="header-category">
             <div id="animate-heading">
                 <h3 class="candidate-add-vs">
                     {% for pick in user_picks %}
                     <span>
-                        {{ pick.candidate }}
+                        {{ pick.candidate|title }}
                     </span>
                     {% endfor %}
                 </h3>
-                <h3>{{ post.main_question }}</h3>
+                <h3>{{ post.main_question|title }}</h3>
             </div>
             {% if post.category.hero_img %}
             <img id="animate-heading" src="{{ post.category.hero_img.url }}" alt="{{ post.category }} hero image">
@@ -94,16 +106,6 @@
         {% endfor %}
     </section>
 
-
-
-
-
-
-
-
-
-
-
     <!-- results -->
     <section class="container-result section-results">
         <div class="result-btn">
@@ -123,7 +125,7 @@
         
             <!-- 2. matched candidate info -->
             <div class="card-result">
-                <h1><span id="final-result-candidate" class="color-purple">{{ user_candidate_pick.candidate }}</span> agrees with <span id="final-result-answer-total">{{ user_candidate_pick.total_likes }}</span> out of {{ total_questions }} of your views on <span class="color-purple">{{ post.title }}.</span></h1>
+                <h2><span id="final-result-candidate" class="color-purple">{{ user_candidate_pick.candidate }}</span> agrees with <span id="final-result-answer-total">{{ user_candidate_pick.total_likes }}</span> out of {{ total_questions }} of your views on <span class="color-purple">{{ post.title }}.</span></h2>
         
 
                 <div class="candidate-profile-wrapper">
@@ -139,9 +141,9 @@
                 
                         <p><span id="sectionProfile-age">{{ user_candidate_pick.age }} years</span> · <span
                                 id="sectionProfile-political_party">{{ user_candidate_pick.political_party|title }}</span> · <a
-                                id="sectionProfile-website" src="{{ user_candidate_pick.website }}" target="_blank">Website</a>
+                                id="sectionProfile-website" src="{{ user_candidate_pick.website }}" target="_blank">{{ user_candidate_pick.website }}</a>
                         </p>
-                        <p id="sectionProfile-bio" class="post-heading-p">{{ user_candidate_pick.bio }}</p>
+                        <p id="sectionProfile-bio">{{ user_candidate_pick.bio }}</p>
                     </div>
                 </div>
                 
@@ -179,9 +181,16 @@
     {% if related_posts %}
     <h6 class="related-heading">More In {{ post.category|title }}</h6>
     {% for post in related_posts %}
-    <div class="card-post">
-        <div class="card-post-img" style="height:150px">
-            <a href="{% url 'posts:post' post.slug %}"><img src="{{ post.image }}" alt="{{ post.title }}"></a>
+    <div class="card-post-no-border">
+        <div class="card-post-img-no-border" style="height:150px">
+            <a href="{% url 'posts:post' post.slug %}">
+                <picture>
+                    {% if post.image2x %}
+                    <source srcset="{{ post.image2x.url }}" media="(min-width: 768px)">
+                    {% endif %}
+                    <img src="{{ post.image.url }}" alt="{{ post.title }} image" />
+                </picture>
+            </a>
         </div>
         <div class="card-post-detail">
             <h5><a href="{% url 'posts:post' post.slug %}">{{ post.title }}</a></h5>
