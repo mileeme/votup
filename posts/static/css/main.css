@@ -219,7 +219,7 @@
 
 @media (min-width: 48rem) {
   .featured-header h1 {
-    font-size: 2.3375rem;
+    font-size: 2.75rem;
     margin-top: 2rem;
   }
 }
@@ -445,7 +445,7 @@
   padding: 3rem 0;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 36rem) {
   .container-question {
     padding: 4rem 0;
   }
@@ -461,7 +461,7 @@
   margin-top: 1rem;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 36rem) {
   .card-qa {
     margin-top: 3rem;
     grid-template-columns: repeat(2, 1fr);
@@ -482,7 +482,7 @@
   border-radius: 20px;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 36rem) {
   .radio-group label {
     padding: 2rem;
   }

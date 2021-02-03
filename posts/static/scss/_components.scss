@@ -157,7 +157,7 @@
         color: $card-heading-color;
         margin-top: $margin-1;
         @include screen(md) {
-            font-size: $h1 * $small;
+            font-size: $h1;
             margin-top: $margin-2;
         }
     }
@@ -356,7 +356,7 @@
 }
 .container-question {
     padding: 3rem 0;  
-    @include screen(md) {
+    @include screen(sm) {
         padding: 4rem 0;
     }
 }
@@ -367,7 +367,7 @@
     display: grid;
     grid-gap: 0.4rem;
     margin-top: $margin-1;
-    @include screen(md) {
+    @include screen(sm) {
         margin-top: 3rem;
         grid-template-columns: repeat(2, 1fr);
     }
@@ -386,7 +386,7 @@
         // background-color: lighten($gray, 40%);
         padding: $padding-2 $padding-1;
         border-radius: 20px;
-        @include screen(md) { padding: $padding-2; }
+        @include screen(sm) { padding: $padding-2; }
         a {
             text-decoration: none;
         }

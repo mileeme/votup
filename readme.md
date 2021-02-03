@@ -14,20 +14,13 @@ Votup allows publishers to create quizzes and users to view a side-by-side compa
 ### Mobile-responsive design
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 3px;">
   <div style="display:row;">
-    <img src="posts/static/image/posts/votup_home.png" alt="votup home">
-    <img src="posts/static/image/posts/profile.png" alt="votup profile">
+    <img src="posts/static/image/posts/votup_home2.png" alt="votup home">
+    <img src="posts/static/image/posts/votup_post_quiz.png" alt="votup quiz">
   </div>
-  <div style="display:row;">
-    <img src="posts/static/image/posts/post.png" alt="votup post">
-    <img src="posts/static/image/posts/post_result.png" alt="votup post result">
-  </div>
-</div>
 
 <div style="display: grid; grid-template-columns: repeat(4, 1fr); grid-gap: 3px;">
-    <img src="posts/static/image/posts/votup_home_mobile.png" alt="votup home responsive">
-    <img src="posts/static/image/posts/votup_profile_mobile.png" alt="votup profile responsive">
-    <img src="posts/static/image/posts/votup_post_mobile.png" alt="votup post responsive">
-    <img src="posts/static/image/posts/votup_post_result_mobile.png" alt="votup post result responsive">
+    <img src="posts/static/image/posts/votup_home_ios.png" alt="votup home ios">
+    <img src="posts/static/image/posts/votup_post_ios.png" alt="votup post ios">
 </div>
 
 ---
